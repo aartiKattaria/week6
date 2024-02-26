@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Columns Dynamically</title>
+    <style>
+        /* Container styles */
+        .container {
+            width: 80%; /* Adjust the width as needed */
+            margin: 0 auto; /* Centers the container horizontally */
+            padding: 20px; /* Adds some padding inside the container */
+            background-color: #eee6e6; /* Example background color */
+            border: 1px solid #141212; /* Example border */
+            display: flex; /* Use flexbox for layout */
+        }
+
+        /* Column styles */
+        .column {
+            height: 90vh;
+            flex-basis: 30%; /* Width of each column */
+            padding: 10px; /* Add some padding inside each column */
+            background-color: #749b9e; /* Example background color */
+            border: 1px solid #101010; /* Example border */
+        }
+    </style>
+</head>
+<body>
+    <button onclick="addColumn()">+</button>
+
+<div class="container" id="container">
+    <!-- Initial columns will be added here -->
+</div>
+
+<button onclick="changeAllColumnColors()">Generate</button>
+
+
+<script>
+    function addColumn() {
+        // Create a new column element
+        var column = document.createElement("div");
+        column.className = "column";
+        //column.innerHTML = "<h2>Column</h2>";
+
+        // Append the new column to the container
+        document.getElementById("container").appendChild(column);
+        
+    }
+    function generateHexColor() {
+        return '#' + Math.floor(Math.random()*16777215).toString(16);
+    }
+
+    // Function to change the color of a column
+    function changeColor(column) {
+        column.style.backgroundColor = generateHexColor();
+    }
+
+    function changeAllColumnColors() {
+        var columns = document.getElementsByClassName("column");
+        for (var i = 0; i < columns.length; i++) {
+            changeColor(columns[i]);
+        }
+    }
+</script>
+
+</body>
+</html>
+
